@@ -50,5 +50,9 @@
             <Setter Property="FontSize" Value="15"/>
         </Style>
 
+        <Style x:Key="StyleTextCombobox" TargetType="ComboBox">
+            <Setter Property="FontSize" Value="15"/>
+        </Style>
+
     </Application.Resources>
 </Application>

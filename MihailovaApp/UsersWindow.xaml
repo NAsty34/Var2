@@ -5,8 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MihailovaApp"
         mc:Ignorable="d"
-        Title="UsersWindow" Height="450" Width="800">
-    <Grid>
+        Title="UsersWindow" Height="450" Width="800" MinHeight="450" MinWidth="800" Icon="ImageApp/icon.ico">
+    <Viewbox>
+    <Grid Height="450" Width="800">
         <Grid.RowDefinitions>
             <RowDefinition Height="114*"/>
             <RowDefinition Height="305*"/>
@@ -17,4 +18,5 @@
             <Button Style="{StaticResource Login}" Content="Выйти" Click="Logout_Click"/>
         </StackPanel>
     </Grid>
+    </Viewbox>
 </Window>

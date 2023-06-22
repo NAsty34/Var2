@@ -17,7 +17,8 @@
             <TextBlock Text="Добро пожаловать" TextWrapping="Wrap" Style="{StaticResource Header}"/>
             <Button Style="{StaticResource Login}" Click="Login_Click"/>
         </StackPanel>
-        <ListBox x:Name="Events" Grid.Row="1">
+            <ComboBox x:Name="Sort" SelectionChanged="Sortdate_Change" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,50,10" Width="200" Style="{StaticResource StyleTextCombobox}"/>
+            <ListBox x:Name="Events" Grid.Row="1">
             <ListBox.ItemTemplate>
                     <DataTemplate>
                         <StackPanel>

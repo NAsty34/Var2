@@ -24,6 +24,14 @@ namespace MihailovaApp
         public HelloWindow()
         {
             InitializeComponent();
+            List<string> itemCombo = new List<string>
+            {
+                "Сортировки нет",
+                "Сначала старые",
+                "Сначала новые"
+            };
+            Sort.ItemsSource = itemCombo;
+            Sort.SelectedIndex = 0;
             Events.ItemsSource = events;
         }
 
@@ -31,6 +39,22 @@ namespace MihailovaApp
         {
             new Authorize().Show();
             Close();
+        }
+
+        private void Sortdate_Change(object sender, SelectionChangedEventArgs e)
+        {
+            if (Sort.SelectedIndex == 1)
+            {
+                Events.ItemsSource = events.OrderBy(a=>a.Date);
+            }
+            else if (Sort.SelectedIndex == 2)
+            {
+                Events.ItemsSource = events.OrderByDescending(a => a.Date);
+            }
+            else
+            {
+                Events.ItemsSource = events;
+            }
         }
     }
 }

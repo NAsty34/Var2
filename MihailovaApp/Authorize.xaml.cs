@@ -33,16 +33,24 @@ namespace MihailovaApp
 
         private void Auth_Click(object sender, RoutedEventArgs e)
         {
-            var user = users.FirstOrDefault(a => a.Id == int.Parse(login.Text) && a.Password == password.Text);
-            if (user == null)
+            if (login.Text == "" || password.Text == "")
             {
-                MessageBox.Show("Некоректные данные","ErroeValidation");
+                MessageBox.Show("Необходимо заполнить все поля", "ErrorValidation");
             }
             else
             {
-                new UsersWindow(user).Show();
-                Close();
+                var user = users.FirstOrDefault(a => a.Id == int.Parse(login.Text) && a.Password == password.Text);
+                if (user == null)
+                {
+                    MessageBox.Show("Некоректные данные", "ErrorValidation");
+                }
+                else
+                {
+                    new UsersWindow(user).Show();
+                    Close();
+                }
             }
+           
         }
     }
 }
