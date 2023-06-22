@@ -1,0 +1,267 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Хранилище Mihailova_BlockCheinModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Active">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Day" Type="int" Nullable="false" />
+    <Property Name="DateStart" Type="date" Nullable="false" />
+  </EntityType>
+  <!--Ошибки, обнаруженные при создании:
+предупреждение 6002: В таблице или представлении "Mihailova_BlockChein.dbo.ActiveByUser" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
+  <EntityType Name="ActiveByUser">
+    <Key>
+      <PropertyRef Name="ActiveId" />
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="ActiveId" Type="int" Nullable="false" />
+    <Property Name="UserId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="City">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="100" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Country">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="NameEnglish" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="Code" Type="varchar" MaxLength="2" Nullable="false" />
+    <Property Name="CodeInt" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Event">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="200" Nullable="false" />
+    <Property Name="Date" Type="date" Nullable="false" />
+    <Property Name="Days" Type="int" Nullable="false" />
+    <Property Name="City" Type="int" Nullable="false" />
+    <Property Name="Winner" Type="int" />
+  </EntityType>
+  <!--Ошибки, обнаруженные при создании:
+предупреждение 6002: В таблице или представлении "Mihailova_BlockChein.dbo.EventByActive" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
+  <EntityType Name="EventByActive">
+    <Key>
+      <PropertyRef Name="EventId" />
+      <PropertyRef Name="ActiveId" />
+    </Key>
+    <Property Name="EventId" Type="int" Nullable="false" />
+    <Property Name="ActiveId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Gender">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="20" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Role">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FirstName" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="SecondName" Type="varchar" MaxLength="100" />
+    <Property Name="Email" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="DateBirthday" Type="date" Nullable="false" />
+    <Property Name="Country" Type="int" Nullable="false" />
+    <Property Name="Phone" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="Password" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="Photo" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="GenderId" Type="int" Nullable="false" />
+    <Property Name="RoleId" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_ActiveByUser_Active">
+    <End Role="Active" Type="Self.Active" Multiplicity="1" />
+    <End Role="ActiveByUser" Type="Self.ActiveByUser" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Active">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ActiveByUser">
+        <PropertyRef Name="ActiveId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ActiveByUser_Users">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="ActiveByUser" Type="Self.ActiveByUser" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ActiveByUser">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Event_City">
+    <End Role="City" Type="Self.City" Multiplicity="1" />
+    <End Role="Event" Type="Self.Event" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="City">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Event">
+        <PropertyRef Name="City" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Event_Users">
+    <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+    <End Role="Event" Type="Self.Event" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Event">
+        <PropertyRef Name="Winner" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_EventByActive_Active">
+    <End Role="Active" Type="Self.Active" Multiplicity="1" />
+    <End Role="EventByActive" Type="Self.EventByActive" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Active">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="EventByActive">
+        <PropertyRef Name="ActiveId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_EventByActive_Event">
+    <End Role="Event" Type="Self.Event" Multiplicity="1" />
+    <End Role="EventByActive" Type="Self.EventByActive" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Event">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="EventByActive">
+        <PropertyRef Name="EventId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Users_Country">
+    <End Role="Country" Type="Self.Country" Multiplicity="1" />
+    <End Role="Users" Type="Self.Users" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Country">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Users">
+        <PropertyRef Name="Country" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Users_Gender">
+    <End Role="Gender" Type="Self.Gender" Multiplicity="1" />
+    <End Role="Users" Type="Self.Users" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Gender">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Users">
+        <PropertyRef Name="GenderId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Users_Role">
+    <End Role="Role" Type="Self.Role" Multiplicity="1" />
+    <End Role="Users" Type="Self.Users" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Role">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Users">
+        <PropertyRef Name="RoleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Хранилище Mihailova_BlockCheinModelContainer">
+    <EntitySet Name="Active" EntityType="Self.Active" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="City" EntityType="Self.City" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Country" EntityType="Self.Country" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Event" EntityType="Self.Event" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Gender" EntityType="Self.Gender" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ActiveByUser" EntityType="Self.ActiveByUser" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [ActiveByUser].[ActiveId] AS [ActiveId], 
+    [ActiveByUser].[UserId] AS [UserId]
+    FROM [dbo].[ActiveByUser] AS [ActiveByUser]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="EventByActive" EntityType="Self.EventByActive" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [EventByActive].[EventId] AS [EventId], 
+    [EventByActive].[ActiveId] AS [ActiveId]
+    FROM [dbo].[EventByActive] AS [EventByActive]</DefiningQuery>
+    </EntitySet>
+    <AssociationSet Name="FK_ActiveByUser_Active" Association="Self.FK_ActiveByUser_Active">
+      <End Role="Active" EntitySet="Active" />
+      <End Role="ActiveByUser" EntitySet="ActiveByUser" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ActiveByUser_Users" Association="Self.FK_ActiveByUser_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="ActiveByUser" EntitySet="ActiveByUser" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Event_City" Association="Self.FK_Event_City">
+      <End Role="City" EntitySet="City" />
+      <End Role="Event" EntitySet="Event" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Event_Users" Association="Self.FK_Event_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Event" EntitySet="Event" />
+    </AssociationSet>
+    <AssociationSet Name="FK_EventByActive_Active" Association="Self.FK_EventByActive_Active">
+      <End Role="Active" EntitySet="Active" />
+      <End Role="EventByActive" EntitySet="EventByActive" />
+    </AssociationSet>
+    <AssociationSet Name="FK_EventByActive_Event" Association="Self.FK_EventByActive_Event">
+      <End Role="Event" EntitySet="Event" />
+      <End Role="EventByActive" EntitySet="EventByActive" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Users_Country" Association="Self.FK_Users_Country">
+      <End Role="Country" EntitySet="Country" />
+      <End Role="Users" EntitySet="Users" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Users_Gender" Association="Self.FK_Users_Gender">
+      <End Role="Gender" EntitySet="Gender" />
+      <End Role="Users" EntitySet="Users" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Users_Role" Association="Self.FK_Users_Role">
+      <End Role="Role" EntitySet="Role" />
+      <End Role="Users" EntitySet="Users" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

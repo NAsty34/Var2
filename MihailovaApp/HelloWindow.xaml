@@ -1,0 +1,36 @@
+﻿<Window x:Class="MihailovaApp.HelloWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MihailovaApp"
+        mc:Ignorable="d"
+        Title="HelloWindow" Height="450" Width="850" MinHeight="450" MinWidth="850" Icon="ImageApp/icon.ico">
+    <Viewbox>
+        <Grid Height="450" Width="850" Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="114*"/>
+            <RowDefinition Height="305*"/>
+        </Grid.RowDefinitions>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10">
+            <Image Source="ImageApp/logo.png"/>
+            <TextBlock Text="Добро пожаловать" TextWrapping="Wrap" Style="{StaticResource Header}"/>
+            <Button Style="{StaticResource Login}" Click="Login_Click"/>
+        </StackPanel>
+        <ListBox x:Name="Events" Grid.Row="1">
+            <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel>
+                            <TextBlock Text="{Binding Name}" Style="{StaticResource StyleTextBlockList}"/>
+                            <Image Source="{Binding sourceImage}" Height="100" HorizontalAlignment="Left"/>
+                            <TextBlock Text="{Binding Date, StringFormat=Дата начала: {0:d}}" Style="{StaticResource StyleTextBlockList}"/>
+                            <TextBlock Text="{Binding Days, StringFormat=Длительность: {0} дня}" Style="{StaticResource StyleTextBlockList}"/>
+                            <TextBlock Text="{Binding nameCity, StringFormat=Город: {0}}" Style="{StaticResource StyleTextBlockList}"/>
+                            <TextBlock Text="{Binding nameWinner, StringFormat=Победитель: {0}}" Visibility="{Binding VisibilityWinner}" Style="{StaticResource StyleTextBlockList}"/>
+                        </StackPanel>
+                    </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+    </Grid>
+    </Viewbox>
+</Window>

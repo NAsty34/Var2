@@ -35,8 +35,17 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -55,7 +64,46 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="MainWindow.xaml">
+    <Compile Include="Active.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Authorize.xaml.cs">
+      <DependentUpon>Authorize.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="City.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Country.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Event.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Gender.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Role.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sysdiagrams.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Users.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UsersWindow.xaml.cs">
+      <DependentUpon>UsersWindow.xaml</DependentUpon>
+    </Compile>
+    <Page Include="Authorize.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="HelloWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -63,12 +111,26 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="MainWindow.xaml.cs">
-      <DependentUpon>MainWindow.xaml</DependentUpon>
+    <Compile Include="HelloWindow.xaml.cs">
+      <DependentUpon>HelloWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="UsersWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Model1.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model1.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model1.edmx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -86,6 +148,14 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EntityDeploy Include="Model1.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Model1.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="Model1.edmx.diagram">
+      <DependentUpon>Model1.edmx</DependentUpon>
+    </None>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -93,6 +163,180 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="ImageUser\Uchastnik\foto1.jpg" />
+    <Resource Include="ImageUser\Uchastnik\foto10.jpg" />
+    <Resource Include="ImageUser\Uchastnik\foto11.jpg" />
+    <Resource Include="ImageUser\Uchastnik\foto12.jpg" />
+    <Resource Include="ImageUser\Uchastnik\foto13.jpg" />
+    <Resource Include="ImageUser\Uchastnik\foto14.jpg" />
+    <Resource Include="ImageUser\Uchastnik\foto15.jpg" />
+    <Resource Include="ImageUser\Uchastnik\foto16.jpg" />
+    <Resource Include="ImageUser\Uchastnik\foto17.jpg" />
+    <Resource Include="ImageUser\Uchastnik\foto18.jpg" />
+    <Resource Include="ImageUser\Uchastnik\foto19.jpg" />
+    <Resource Include="ImageUser\Uchastnik\foto2.jpg" />
+    <Resource Include="ImageUser\Uchastnik\foto20.jpg" />
+    <Resource Include="ImageUser\Uchastnik\foto21.jpg" />
+    <Resource Include="ImageUser\Uchastnik\foto22.jpg" />
+    <Resource Include="ImageUser\Uchastnik\foto23.jpg" />
+    <Resource Include="ImageUser\Uchastnik\foto24.jpg" />
+    <Resource Include="ImageUser\Uchastnik\foto25.jpg" />
+    <Resource Include="ImageUser\Uchastnik\foto26.jpg" />
+    <Resource Include="ImageUser\Uchastnik\foto27.jpg" />
+    <Resource Include="ImageUser\Uchastnik\foto28.jpg" />
+    <Resource Include="ImageUser\Uchastnik\foto29.jpg" />
+    <Resource Include="ImageUser\Uchastnik\foto3.jpg" />
+    <Resource Include="ImageUser\Uchastnik\foto30.jpg" />
+    <Resource Include="ImageUser\Uchastnik\foto31.jpg" />
+    <Resource Include="ImageUser\Uchastnik\foto32.jpg" />
+    <Resource Include="ImageUser\Uchastnik\foto33.jpg" />
+    <Resource Include="ImageUser\Uchastnik\foto34.jpg" />
+    <Resource Include="ImageUser\Uchastnik\foto35.jpg" />
+    <Resource Include="ImageUser\Uchastnik\foto36.jpg" />
+    <Resource Include="ImageUser\Uchastnik\foto37.jpg" />
+    <Resource Include="ImageUser\Uchastnik\foto38.jpg" />
+    <Resource Include="ImageUser\Uchastnik\foto39.jpg" />
+    <Resource Include="ImageUser\Uchastnik\foto4.jpg" />
+    <Resource Include="ImageUser\Uchastnik\foto40.jpg" />
+    <Resource Include="ImageUser\Uchastnik\foto41.jpg" />
+    <Resource Include="ImageUser\Uchastnik\foto42.jpg" />
+    <Resource Include="ImageUser\Uchastnik\foto43.jpg" />
+    <Resource Include="ImageUser\Uchastnik\foto44.jpg" />
+    <Resource Include="ImageUser\Uchastnik\foto45.jpg" />
+    <Resource Include="ImageUser\Uchastnik\foto46.jpg" />
+    <Resource Include="ImageUser\Uchastnik\foto47.jpg" />
+    <Resource Include="ImageUser\Uchastnik\foto48.jpg" />
+    <Resource Include="ImageUser\Uchastnik\foto49.jpg" />
+    <Resource Include="ImageUser\Uchastnik\foto5.jpg" />
+    <Resource Include="ImageUser\Uchastnik\foto50.jpg" />
+    <Resource Include="ImageUser\Uchastnik\foto51.jpg" />
+    <Resource Include="ImageUser\Uchastnik\foto52.jpg" />
+    <Resource Include="ImageUser\Uchastnik\foto53.jpg" />
+    <Resource Include="ImageUser\Uchastnik\foto54.jpg" />
+    <Resource Include="ImageUser\Uchastnik\foto55.jpg" />
+    <Resource Include="ImageUser\Uchastnik\foto56.jpg" />
+    <Resource Include="ImageUser\Uchastnik\foto57.jpg" />
+    <Resource Include="ImageUser\Uchastnik\foto58.jpg" />
+    <Resource Include="ImageUser\Uchastnik\foto59.jpg" />
+    <Resource Include="ImageUser\Uchastnik\foto6.jpg" />
+    <Resource Include="ImageUser\Uchastnik\foto60.jpg" />
+    <Resource Include="ImageUser\Uchastnik\foto61.jpg" />
+    <Resource Include="ImageUser\Uchastnik\foto62.jpg" />
+    <Resource Include="ImageUser\Uchastnik\foto63.jpg" />
+    <Resource Include="ImageUser\Uchastnik\foto64.jpg" />
+    <Resource Include="ImageUser\Uchastnik\foto65.jpg" />
+    <Resource Include="ImageUser\Uchastnik\foto66.jpg" />
+    <Resource Include="ImageUser\Uchastnik\foto67.jpg" />
+    <Resource Include="ImageUser\Uchastnik\foto68.jpg" />
+    <Resource Include="ImageUser\Uchastnik\foto69.jpg" />
+    <Resource Include="ImageUser\Uchastnik\foto7.jpg" />
+    <Resource Include="ImageUser\Uchastnik\foto70.jpg" />
+    <Resource Include="ImageUser\Uchastnik\foto8.jpg" />
+    <Resource Include="ImageUser\Uchastnik\foto9.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="ImageUser\Organizators\foto1.jpg" />
+    <Resource Include="ImageUser\Organizators\foto2.jpg" />
+    <Resource Include="ImageUser\Organizators\foto3.jpg" />
+    <Resource Include="ImageUser\Organizators\foto4.jpg" />
+    <Resource Include="ImageUser\Organizators\foto5.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="ImageUser\Moderators\foto10.jpg" />
+    <Resource Include="ImageUser\Moderators\foto11.jpg" />
+    <Resource Include="ImageUser\Moderators\foto12.jpg" />
+    <Resource Include="ImageUser\Moderators\foto13.jpg" />
+    <Resource Include="ImageUser\Moderators\foto14.jpg" />
+    <Resource Include="ImageUser\Moderators\foto15.jpg" />
+    <Resource Include="ImageUser\Moderators\foto16.jpg" />
+    <Resource Include="ImageUser\Moderators\foto17.jpg" />
+    <Resource Include="ImageUser\Moderators\foto18.jpg" />
+    <Resource Include="ImageUser\Moderators\foto19.jpg" />
+    <Resource Include="ImageUser\Moderators\foto20.jpg" />
+    <Resource Include="ImageUser\Moderators\foto21.jpg" />
+    <Resource Include="ImageUser\Moderators\foto22.jpg" />
+    <Resource Include="ImageUser\Moderators\foto23.jpg" />
+    <Resource Include="ImageUser\Moderators\foto24.jpg" />
+    <Resource Include="ImageUser\Moderators\foto25.jpg" />
+    <Resource Include="ImageUser\Moderators\foto26.jpg" />
+    <Resource Include="ImageUser\Moderators\foto27.jpg" />
+    <Resource Include="ImageUser\Moderators\foto28.jpg" />
+    <Resource Include="ImageUser\Moderators\foto29.jpg" />
+    <Resource Include="ImageUser\Moderators\foto8.jpg" />
+    <Resource Include="ImageUser\Moderators\foto9.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="ImageUser\Jiry\foto1.jpg" />
+    <Resource Include="ImageUser\Jiry\foto10.jpg" />
+    <Resource Include="ImageUser\Jiry\foto11.jpg" />
+    <Resource Include="ImageUser\Jiry\foto12.jpg" />
+    <Resource Include="ImageUser\Jiry\foto13.jpg" />
+    <Resource Include="ImageUser\Jiry\foto14.jpg" />
+    <Resource Include="ImageUser\Jiry\foto15.jpg" />
+    <Resource Include="ImageUser\Jiry\foto16.jpg" />
+    <Resource Include="ImageUser\Jiry\foto17.jpg" />
+    <Resource Include="ImageUser\Jiry\foto18.jpg" />
+    <Resource Include="ImageUser\Jiry\foto19.jpg" />
+    <Resource Include="ImageUser\Jiry\foto2.jpg" />
+    <Resource Include="ImageUser\Jiry\foto20.jpg" />
+    <Resource Include="ImageUser\Jiry\foto21.jpg" />
+    <Resource Include="ImageUser\Jiry\foto22.jpg" />
+    <Resource Include="ImageUser\Jiry\foto23.jpg" />
+    <Resource Include="ImageUser\Jiry\foto24.jpg" />
+    <Resource Include="ImageUser\Jiry\foto25.jpg" />
+    <Resource Include="ImageUser\Jiry\foto26.jpg" />
+    <Resource Include="ImageUser\Jiry\foto27.jpg" />
+    <Resource Include="ImageUser\Jiry\foto28.jpg" />
+    <Resource Include="ImageUser\Jiry\foto29.jpg" />
+    <Resource Include="ImageUser\Jiry\foto3.jpg" />
+    <Resource Include="ImageUser\Jiry\foto30.jpg" />
+    <Resource Include="ImageUser\Jiry\foto4.jpg" />
+    <Resource Include="ImageUser\Jiry\foto5.jpg" />
+    <Resource Include="ImageUser\Jiry\foto6.jpg" />
+    <Resource Include="ImageUser\Jiry\foto7.jpg" />
+    <Resource Include="ImageUser\Jiry\foto8.jpg" />
+    <Resource Include="ImageUser\Jiry\foto9.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="ImageApp\icon.ico" />
+    <Resource Include="ImageApp\logo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="ImageEvent\1.jpg" />
+    <Resource Include="ImageEvent\10.jpg" />
+    <Resource Include="ImageEvent\11.jpg" />
+    <Resource Include="ImageEvent\12.jpg" />
+    <Resource Include="ImageEvent\13.jpg" />
+    <Resource Include="ImageEvent\14.jpg" />
+    <Resource Include="ImageEvent\15.jpg" />
+    <Resource Include="ImageEvent\16.jpg" />
+    <Resource Include="ImageEvent\17.jpg" />
+    <Resource Include="ImageEvent\18.jpg" />
+    <Resource Include="ImageEvent\19.jpg" />
+    <Resource Include="ImageEvent\2.jpg" />
+    <Resource Include="ImageEvent\20.jpg" />
+    <Resource Include="ImageEvent\3.jpg" />
+    <Resource Include="ImageEvent\4.jpg" />
+    <Resource Include="ImageEvent\5.jpg" />
+    <Resource Include="ImageEvent\6.jpg" />
+    <Resource Include="ImageEvent\7.jpg" />
+    <Resource Include="ImageEvent\8.jpg" />
+    <Resource Include="ImageEvent\9.jpg" />
+    <Content Include="Model1.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>Model1.Context.cs</LastGenOutput>
+      <DependentUpon>Model1.edmx</DependentUpon>
+    </Content>
+    <Content Include="Model1.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Model1.edmx</DependentUpon>
+      <LastGenOutput>Model1.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
